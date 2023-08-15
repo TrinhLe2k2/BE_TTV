@@ -1,0 +1,37 @@
+﻿@model TTV.Models.Comment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+
+@*<script>
+    $(document).ready(function () {
+        $('#commentForm').submit(function (e) {
+            e.preventDefault(); // Ngăn chặn gửi yêu cầu mặc định
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        // Xử lý thành công
+                        // Ví dụ: Cập nhật danh sách bình luận mà không cần tải lại trang
+
+                        $('#commentList').append('<li class="list-group-item">' + response.comment.comment_text + '</li>');
+
+                        form.trigger('reset'); // Xóa nội dung form
+                    }
+                },
+                error: function () {
+                    // Xử lý lỗi (nếu có)
+                }
+            });
+        });
+    });
+</script>*@

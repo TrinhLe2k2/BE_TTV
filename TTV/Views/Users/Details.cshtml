@@ -1,0 +1,72 @@
+﻿@model TTV.Models.User
+
+@{
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<div>
+    <h4>THÔNG TIN CÁ NHÂN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_background)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_background)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isAdmin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

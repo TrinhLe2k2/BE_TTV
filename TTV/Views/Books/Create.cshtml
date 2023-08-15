@@ -1,0 +1,100 @@
+﻿@model TTV.Models.Book
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Book</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.book_title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.book_title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book_title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.book_author, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.book_author, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book_author, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.book_description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book_description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.book_description, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.book_description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.book_description, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.book_description, "", new { @class = "text-danger" })
+            <script>
+                CKEDITOR.replace("book_description");
+
+                // Xử lý sự kiện paste trên ô nhập liệu
+                document.getElementById('content-input').addEventListener('paste', function (e) {
+                    e.preventDefault();
+
+                    // Lấy dữ liệu được paste
+                    var pastedData = e.clipboardData.getData('text/plain');
+
+                    // Chuyển các ký tự xuống dòng thành thẻ <br>
+                    var contentWithLineBreaks = pastedData.replace(/[\r\n]+/g, '<br>');
+
+                    // Thêm dữ liệu đã chuyển đổi vào ô nhập liệu
+                    var contentInput = document.getElementById('content-input');
+                    contentInput.innerHTML += contentWithLineBreaks;
+                });
+            </script>
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.book_poster, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book_poster, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                @Html.ValidationMessageFor(model => model.book_poster, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="book_poster">Book Poster</label>
+        <div class="col-md-10">
+            <input type="file" id="book_poster" name="bookPosterFile" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Đăng Truyện" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

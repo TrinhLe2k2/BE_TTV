@@ -1,0 +1,31 @@
+﻿@model TTV.Models.Chapter
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Start detail chapter -->
+<section class="py-5" id="Detail-chapter" style="background-color: #e5e4db;">
+    <div class="container" style="background-color: #f6f1e7;">
+        <div class="row pb-5 px-5">
+            <h3 class="text-center mt-5" style="font-size: 60px">@ViewBag.book.book_title</h3>
+            <p class="text-center mb-5" style="font-size: 24px;">@Model.chapter_title</p>
+            <div class="" style="padding: 0 100px; line-height: 50px; font-size: 24px;">
+                @Html.Raw(Model.chapter_content)
+            </div>
+        </div>
+        <div class="row pb-5 px-5">
+            <div class="col-6 d-flex justify-content-center">
+                <a class="p-3" href="">Chương trước</a>
+            </div>
+            <div class="col-6 d-flex justify-content-center">
+                <a class="p-3" href="">Chương sau</a>
+            </div>
+        </div>
+</section>
+<!-- End detail chapter -->
+<!-- Start comment -->
+<section id="comment">
+    @Html.Partial("~/Views/PartialView/_Comments.cshtml")
+</section>
+<!-- End comment -->

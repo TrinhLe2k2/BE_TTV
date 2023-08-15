@@ -1,0 +1,199 @@
+﻿@model TTV.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    var storyId = 1; // ID của truyện
+    var isFollowing = ViewBag.isFollowing; // Biến để xác định trạng thái theo dõi (đã theo dõi hay chưa)
+}
+
+
+<!-- Start content-1 section -->
+<section class="p-4" id="Content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 ps-0">
+                <article id="item-detail">
+                    <h1 class="title-detail">@Model.book_title </h1>
+                    <div class="detail-info">
+                        <div class="row">
+                            <div class="col-sm-4 col-image">
+                                <img src="~/Content/asset/img/truyen1.jpg" alt="@Model.book_title" class="img-fluid">
+                            </div>
+                            <div class="col-sm-8 col-info">
+                                <ul class="list-info">
+                                    <li class="author row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-user">
+                                            </i> Tác giả
+                                        </p>
+                                        <p class="col-sm-8">@Model.book_author</p>
+                                    </li>
+                                    <li class="kind row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-tags">
+                                            </i> Thể loại
+                                        </p>
+                                        <p class="col-sm-8">
+
+                                            @foreach (var item in ViewBag.BookCategoty)
+                                            {
+                                                <a href="">@item.Category.category_name</a> <span> - </span>
+                                            }
+                                        </p>
+                                    </li>
+                                    <li class="row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-eye">
+                                            </i> Lượt xem
+                                        </p>
+                                        <p class="col-sm-8">1000</p>
+                                    </li>
+                                </ul>
+
+                                @Html.Partial("~/Views/Follows/FollowStory.cshtml")
+
+                                @*<div class="follow my-1" id="Follow">
+            @{
+                if (isFollowing == true)
+                {
+                    <button id="followBtn" data-story-id="@storyId" data-is-following="@isFollowing.ToString()">Bỏ theo dõi</button>
+                }
+                else
+                {
+                    <button id="followBtn" data-story-id="@storyId" data-is-following="@isFollowing.ToString()">Theo dõi</button>
+                }
+            }
+            <span>
+                <b>@ViewBag.countFollow</b> Lượt theo dõi
+            </span>
+            <script>
+                $(document).ready(function () {
+                    $('#followBtn').click(function () {
+                        var storyId = $(this).data('story-id');
+                        var isFollowing = $(this).data('is-following');
+
+                        $.ajax({
+                            url: '@Url.Action("FollowStory", "Follows")',
+                            type: 'POST',
+                            data: { storyId: storyId, isFollowing: isFollowing },
+                            success: function (response) {
+                                if (response.success) {
+                                    // Xử lý thành công
+                                    if (isFollowing === 'true') {
+                                        $('#followBtn').text('Bỏ theo dõi');
+                                        $('#followBtn').data('is-following', 'true');
+
+                                    } else {
+                                        $('#followBtn').text('theo dõi');
+                                        $('#followBtn').data('is-following', 'false');
+                                    }
+                                    $('#Follow').load(location.href + ' #Follow');
+                                }
+
+                            },
+                            error: function () {
+                                // Xử lý lỗi (nếu có)
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>*@
+
+
+                                <div class="read-action mrt10">
+                                    <a class="btn btn-warning mrb5" href=""> Đọc từ đầu</a>
+                                    <a class="btn btn-warning mrb5" href=""> Đọc mới nhất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-content my-3">
+                        <h3 class="list-title">
+                            <i class="fa fa-file-text-o">
+                            </i> Nội dung
+                        </h3>
+                        <p class="">
+                            @Html.Raw(Model.book_description)
+                        </p>
+                    </div>
+                    <div class="list-chapter" id="nt_listchapter">
+                        <h2 class="list-title clearfix">
+                            <i class="fa fa-list">
+                            </i> Danh sách chương
+                        </h2>
+                        <div class="row heading">
+                            <div class="col-sm-5 no-wrap">Số chương</div>
+                            <div class="col-sm-4 no-wrap text-center">Cập nhật</div>
+                            <div class="col-sm-3 no-wrap text-center">Lượt xem</div>
+                        </div>
+                        <nav>
+                            <ul>
+                                @foreach (var chapter in ViewBag.listChapters)
+                                {
+                                    <li class="row">
+                                        <div class="col-sm-5 chapter">
+                                            <a href="~/Chapters/Details/@chapter.chapter_id" data-id="1017413">Chapter @chapter.chapter_number</a>
+                                        </div>
+                                        <div class="col-sm-4 text-center no-wrap small" data-created-at="@chapter.chapter_created_at">@chapter.chapter_created_at</div>
+                                        <div class="col-sm-3 text-center small">@chapter.chapter_view</div>
+                                    </li>
+                                    
+                                }
+
+                                
+                            </ul>
+                            <a class="hidden view-more" href="#">
+                                <i class="fa fa-plus">
+                                </i> Xem thêm
+                            </a>
+                        </nav>
+                    </div>
+                </article>
+
+            </div>
+            @Html.Partial("~/Views/PartialView/_ContentRight.cshtml")
+        </div>
+    </div>
+</section>
+<!-- End content-1 section -->
+
+@section Script {
+    <script>
+        // Định dạng thời gian
+        function getTimeSince(dateTime) {
+            var now = new Date();
+            var timeDiff = now - dateTime;
+
+            // Chuyển đổi thời gian từ milliseconds sang giờ, phút, giây
+            var seconds = Math.floor(timeDiff / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+
+            if (days > 0) {
+                return days + " ngày trước";
+            } else if (hours > 0) {
+                return hours + " giờ trước";
+            } else if (minutes > 0) {
+                return minutes + " phút trước";
+            } else {
+                return "Vừa mới đăng";
+            }
+        }
+
+        // Lặp qua tất cả các phần tử và cập nhật thời gian trước đó
+        var timeElements = document.querySelectorAll("[data-created-at]");
+        timeElements.forEach(function (element) {
+            var createdDate = new Date(element.dataset.createdAt);
+            element.innerText = getTimeSince(createdDate);
+        });
+
+
+        // follow
+
+        
+    </script>
+}

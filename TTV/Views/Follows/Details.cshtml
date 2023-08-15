@@ -1,0 +1,43 @@
+﻿@model TTV.Models.Follow
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Follow</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.follow_created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.follow_created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.book_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.book_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.follow_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

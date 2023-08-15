@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TTV.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>DANH SÁCH TRUYỆN ĐÃ ĐĂNG</h2>
+
+<p>
+    @Html.ActionLink("Thêm Truyện Mới", "Create")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.book_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.book_author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.book_poster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.book_created_at)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.User.username)*@
+            Người đăng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_poster)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_created_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.username)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.book_id }) | 
+                @Html.ActionLink("Details", "Details", new { id = item.book_id }) | 
+                @Html.ActionLink("Delete", "Delete", new { id = item.book_id }) | 
+                <a href="~/Chapters/Create?book_id=@item.book_id">Thêm chương</a> | 
+                <a href="~/BookCategories/Create?book_id=@item.book_id">Thêm thể loại</a>
+            </td>
+        </tr>
+    }
+
+</table>

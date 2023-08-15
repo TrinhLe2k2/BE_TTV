@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e542a7c306c429e9ea462cf7fa04bab" Name="Diagram1">
+        <EntityTypeShape EntityType="TangThuVienModel.Book" Width="1.5" PointX="3" PointY="11.625" />
+        <EntityTypeShape EntityType="TangThuVienModel.Category" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="TangThuVienModel.Chapter" Width="1.5" PointX="5.25" PointY="24.125" />
+        <EntityTypeShape EntityType="TangThuVienModel.Follow" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="TangThuVienModel.permission" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="TangThuVienModel.Review" Width="1.5" PointX="8.25" PointY="10.625" />
+        <EntityTypeShape EntityType="TangThuVienModel.user_permissions" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="TangThuVienModel.User" Width="1.5" PointX="0.75" PointY="8.75" />
+        <AssociationConnector Association="TangThuVienModel.FK__Books__user_id__3C69FB99" />
+        <AssociationConnector Association="TangThuVienModel.FK__Chapters__book_i__4316F928" />
+        <AssociationConnector Association="TangThuVienModel.FK__Follows__book_id__5629CD9C" />
+        <AssociationConnector Association="TangThuVienModel.FK__Reviews__book_id__5165187F" />
+        <AssociationConnector Association="TangThuVienModel.FK__Follows__user_id__571DF1D5" />
+        <AssociationConnector Association="TangThuVienModel.FK__user_perm__permi__5AEE82B9" />
+        <AssociationConnector Association="TangThuVienModel.FK__Reviews__user_id__52593CB8" />
+        <AssociationConnector Association="TangThuVienModel.FK__user_perm__user___59FA5E80" />
+        <EntityTypeShape EntityType="TangThuVienModel.BookCategory" Width="1.5" PointX="5.25" PointY="14" />
+        <AssociationConnector Association="TangThuVienModel.FK__BookCateg__book___47DBAE45" />
+        <AssociationConnector Association="TangThuVienModel.FK__BookCateg__categ__48CFD27E" />
+        <EntityTypeShape EntityType="TangThuVienModel.Comment" Width="1.5" PointX="7.5" PointY="16.625" />
+        <AssociationConnector Association="TangThuVienModel.FK__Comments__chapte__4CA06362" />
+        <AssociationConnector Association="TangThuVienModel.FK__Comments__user_i__4D94879B" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

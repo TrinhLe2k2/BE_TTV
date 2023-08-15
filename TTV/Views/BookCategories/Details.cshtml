@@ -1,0 +1,35 @@
+﻿@model TTV.Models.BookCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.book_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.book_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.category_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.category_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookCategory_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

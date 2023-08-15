@@ -1,0 +1,32 @@
+﻿
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="~/Account/Login" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Đăng nhập</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="staticEmail" class="col-form-label">Tên đăng nhập</label>
+                        <div class="">
+                            <input type="text" class="form-control" id="InputUsername" value="" name="InputUsername">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword" class="col-form-label">Mật khẩu</label>
+                        <div class="">
+                            <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+                        </div>
+                    </div>
+                    <p>Bạn chưa có tài khoản? <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Đăng ký</a> </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

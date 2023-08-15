@@ -1,0 +1,51 @@
+﻿@model TTV.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.comment_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comment_created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment_created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chapter.chapter_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chapter.chapter_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.comment_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,58 @@
+﻿
+<div class="container">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <form action="~/Comments/Create" method="post" id="commentForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@ViewBag.ChapterID" name="chapter_id" readonly/>
+                <textarea type="text" placeholder="bình luận" class="w-100 p-2" name="comment_text"></textarea>
+                <input type="submit" value="bình luận" class="mt-1" />
+            </form>
+        </li>
+        <li class="list-group-item">
+            <ul class="list-group list-group-flush" id="commentList">
+                @foreach (var item in ViewBag.chapterCommentList)
+                {
+                    <li class="list-group-item">
+                        <h6>user: @item.User.username</h6>
+                        <p>@item.comment_text</p>
+                    </li>
+                }
+            </ul>
+        </li>
+</ul>
+</div>
+
+<script>
+        $(document).ready(function () {
+            $('#commentForm').submit(function (e) {
+                e.preventDefault(); // Ngăn chặn gửi yêu cầu mặc định
+                var form = $(this);
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Comments")',
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            // Xử lý thành công
+                            // Ví dụ: Cập nhật danh sách bình luận mà không cần tải lại trang
+
+                            $('#commentList').append(
+                                '<li class="list-group-item">' +
+
+                                '<h6>' + 'ADMIN' + '</h6>' +
+                                    '<p>' + response.comment.comment_text + '</p>' +
+
+                                '</li>');
+
+                            form.trigger('reset'); // Xóa nội dung form
+                        }
+                    },
+                    error: function () {
+                        // Xử lý lỗi (nếu có)
+                    }
+                });
+            });
+        });
+</script>

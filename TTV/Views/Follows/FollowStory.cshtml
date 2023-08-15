@@ -1,0 +1,57 @@
+﻿
+
+<div class="follow my-1" id="Follow">
+    <button id="followBtn" data-story-id="@ViewBag.storyId" data-is-following="@ViewBag.isFollowing.ToString()">
+        @{
+            if (ViewBag.isFollowing == true)
+            {
+
+                <text>Đang theo dõi</text>
+            }
+            else
+            {
+                <text>Theo dõi</text>
+            }
+        }
+    </button>
+    <span>
+        <b id="countFollow">@ViewBag.countFollow</b> Lượt theo dõi
+    </span>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+    $('#followBtn').click(function () {
+        var storyId = $(this).data('story-id');
+        var isFollowing = $(this).data('is-following');
+
+        $.ajax({
+            url: '@Url.Action("FollowStory", "Follows")',
+            type: 'POST',
+            data: { storyId: storyId },
+            success: function (response) {
+                if (response.success) {
+                    // Xử lý thành công
+                    //if (isFollowing === 'true') {
+                    //    $('#followBtn').text('Bỏ theo dõi');
+                    //    $('#followBtn').data('is-following', 'true');
+
+                    //} else {
+                    //    $('#followBtn').text('theo dõi');
+                    //    $('#followBtn').data('is-following', 'false');
+                    //}
+                    $('#Follow').load(location.href + ' #Follow');
+                }
+
+            },
+            error: function () {
+                // Xử lý lỗi (nếu có)
+            }
+        });
+    });
+});
+</script>
